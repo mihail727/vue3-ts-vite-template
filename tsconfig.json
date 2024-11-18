@@ -1,0 +1,48 @@
+{
+	"include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"],
+	"exclude": ["node_modules"],
+	"compilerOptions": {
+		"target": "ESNext",
+		"lib": ["DOM", "ESNext"],
+
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"@@/*": ["./*"],
+			"assets/*": ["src/assets/*"]
+		},
+		"types": ["vite/client", "vite-svg-loader"],
+		"resolveJsonModule": true,
+
+		"allowJs": true,
+		"checkJs": false,
+
+		"sourceMap": true,
+		"removeComments": true,
+		"importHelpers": true,
+		"importsNotUsedAsValues": "remove",
+		"newLine": "lf",
+		"noEmitOnError": true,
+		"preserveValueImports": false,
+
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"allowUnusedLabels": false,
+		"allowUnreachableCode": false,
+
+		"skipDefaultLibCheck": true,
+		"skipLibCheck": true
+	}
+}
