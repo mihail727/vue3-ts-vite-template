@@ -1,10 +1,4 @@
 import type { NavigationGuardNext, RouteRecordNormalized } from 'vue-router';
-import { layoutsMiddleware } from './middlewares';
-
-/**
- * Глобальные middlewares срабатывающие перед каждом роутом
- */
-const globalMiddlewares: Middleware[] = [layoutsMiddleware];
 
 /**
  * Функция-фабрика последовательно запускает цепочку Middleware
@@ -66,17 +60,17 @@ export function getRouteMiddlewareListByMatched(matched: RouteRecordNormalized[]
 /**
  * Функция инициирующая запуск цепочки Middleware
  */
-export async function launchMiddlewareSystem(...context: MidlewareLaunchContext) {
-	const selectedGlobalMiddlewares: Middleware[] = getMiddlewareList(globalMiddlewares);
+export async function launchMiddlewareSystem(context: MidlewareLaunchContext) {
+	const selectedGlobalMiddlewares: Middleware[] = getMiddlewareList(context.globalMiddleware);
 	const currentRouteMiddlewares: Middleware[] = getRouteMiddlewareListByMatched(
-		context[0].matched,
+		context.to.matched,
 	);
 
 	const middleware: Middleware[] = [...selectedGlobalMiddlewares, ...currentRouteMiddlewares];
 	const ctx: MiddlewareContext = {
-		to: context[0],
-		from: context[1],
-		next: context[2],
+		to: context.to,
+		from: context.from,
+		next: context.next,
 	};
 
 	if (middleware[0]) {
